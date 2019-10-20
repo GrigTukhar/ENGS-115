@@ -14,6 +14,7 @@ class Student:
         self.__head=Node(name,gpa)
 
     def display(self):
+        print("\nShowing all Students:")
         printval = self.__head
         while printval is not None:
             print(printval.name,printval.gpa)
@@ -33,7 +34,15 @@ class Student:
         newDay.next = self.__head
         self.__head = newDay
 
-    def sortList(self):
+    def highGPA(self):
+        print("\nShowing all Students with a GPA higher than 3.4:")
+        printval = self.__head
+        while printval is not None:
+            if printval.gpa >= 3.4:
+                print(printval.name, printval.gpa)
+            printval = printval.next
+
+    '''def sortList(self):
         n = self.items
         for i in range(n):
             old_temp=self.__head
@@ -58,7 +67,7 @@ class Student:
                 max_temp = max
                 old_temp= max
                 max.next = max_temp
-
+'''
 
 
 
@@ -66,10 +75,12 @@ def main():
     students = Student()
     students.setHead("Grigor",4.0)
     students.append("Erik",2.0)
+    students.append("David", 3.5)
     students.addAtBeginning("Gor",3.0)
     students.display()
-    students.sortList()
-    students.display()
+    students.highGPA()
+    #students.sortList()
+    #students.display()
 
 
 main()
