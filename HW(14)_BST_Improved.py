@@ -88,6 +88,35 @@ class BST:
             self._getNumberofNodes(root.left_child)
             self._getNumberofNodes(root.right_child)
 
+    def printHeight(self):
+        if self.root != None:
+            height = self._printHeight(self.root, 0)
+            print("\nThe height of the BST:",height,"\n")
+        else:
+            return 0
+
+    def _printHeight(self, root, height ):
+        if root == None:
+            return height
+        l_height = self._printHeight(root.left_child, height + 1)
+        r_height = self._printHeight(root.right_child, height + 1)
+        return max(l_height, r_height)
+
+    def find(self, value):
+        if self.root != None:
+            found = self._find(value, self.root)
+            print(found.data,"is in BST")
+        else:
+            return None
+
+    def _find(self, value, root):
+        if value == root.data:
+            return root
+        elif value < root.data and root.left_child != None:
+            return self._find(value, root.left_child)
+        elif value > root.data and root.right_child != None:
+            return self._find(value, root.right_child)
+
 def main():
     myBST = BST()
     print(myBST)
@@ -110,6 +139,8 @@ def main():
     myBST.printInOrder()
     myBST.printPostOrder()
     myBST.getNumberofNodes()
+    myBST.printHeight()
+    myBST.find(4)
 
 
 main()
